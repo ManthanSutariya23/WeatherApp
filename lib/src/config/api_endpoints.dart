@@ -1,10 +1,6 @@
 class APIEndpoints {
-  static url(arg) {
-    return "https://gateway.marvel.com/v1/public/$arg?ts=< time stamp >&apikey=<API key>&hash=< md5 Hash code >";
-  }
-
-  static end (arg) {
-    return arg+'?ts=< time stamp >&apikey=<API key>&hash=< md5 Hash code >';
+  static url(city) {
+    return "https://api.weatherapi.com/v1/forecast.json?key=d8fa071b2a0c4aec98e85009221008&q=$city&days=10&aqi=yes&alerts=yes";
   }
 }
 

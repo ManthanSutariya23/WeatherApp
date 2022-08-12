@@ -41,19 +41,19 @@ import '../config/api_endpoints.dart';
 // }
 
 
-// getDataWithoutHeader ({
-//   @required String? filename,
-// }) async {
-//   var dio = Dio();
-//     final response = await dio.post(
-//       APIEndpoints.baseURL + filename!,
-//     );
-//   if (response.statusCode == 200) {
-//     return jsonDecode(response.toString());
-//   }
-//   else {
-//     return null;
-//   }
-// }
+getData ({
+  @required String? city,
+}) async {
+  var dio = Dio();
+    final response = await dio.get(
+      APIEndpoints.url(city),
+    );
+  if (response.statusCode == 200) {
+    return jsonDecode(response.toString());
+  }
+  else {
+    return null;
+  }
+}
 
 
