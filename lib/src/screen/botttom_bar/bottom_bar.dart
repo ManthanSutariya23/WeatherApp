@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather/src/config/colors.dart';
+import 'package:weather/src/config/text_style.dart';
 import 'package:weather/src/constant/theme.dart';
 import 'package:weather/src/constant/theme_color.dart';
 import 'package:weather/src/model/model.dart';
@@ -60,7 +61,17 @@ class _BottomBarState extends State<BottomBar> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: ThemeColors.cardColor(),
+          centerTitle: true,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.location_pin,color: ThemeColors.primaryTextColor(),size: 22,),
+
+              Text(place.locality.toString(),style: AppTextStyle.regularBold20.copyWith(color: ThemeColors.primaryTextColor()),),
+            ],
+          ),
           actions: [
+            
             InkWell(
               onTap: () {
                 setState(() {
@@ -76,7 +87,30 @@ class _BottomBarState extends State<BottomBar> {
 
             SizedBox(
               width: 20,
-            )
+            ),
+
+            InkWell(
+              onTap: () async {
+                ModelVariable.data = null;
+                setState(() {
+                  _check = true;
+                });
+                ModelVariable.data =  await getData(city: place.locality);
+                selectedIndex = 0;
+                setState(() {
+                  _check = false;
+                });
+
+                if(!mounted) return;
+              },
+              child: Icon(
+                Icons.refresh,
+                color: ThemeColors.secondaryTextColor(),),
+            ),
+
+            SizedBox(
+              width: 20,
+            ),
           ],
         ),
         body: PageView(
