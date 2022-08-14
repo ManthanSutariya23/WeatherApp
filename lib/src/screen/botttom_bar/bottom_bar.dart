@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:weather/src/config/colors.dart';
 import 'package:weather/src/config/text_style.dart';
@@ -6,6 +9,7 @@ import 'package:weather/src/constant/theme.dart';
 import 'package:weather/src/constant/theme_color.dart';
 import 'package:weather/src/model/model.dart';
 import 'package:weather/src/model/model_variable.dart';
+import 'package:weather/src/screen/forcaste/forecast.dart';
 import 'package:weather/src/screen/home/home.dart';
 import 'package:weather/src/services/currnent_location.dart';
 import 'package:weather/src/widget/bottombar_design/sliding_clipped.dart';
@@ -21,6 +25,7 @@ class _BottomBarState extends State<BottomBar> {
 
   int selectedIndex = 0;
   PageController? _pageController;
+  Timer? time;
 
   @override
   void initState() {
@@ -33,12 +38,23 @@ class _BottomBarState extends State<BottomBar> {
 
   check() async {
     await getCurrentPosition();
-    ModelVariable.data =  await getData(city: place.locality);
-    setState(() {
-      _check = false;
+    time = Timer.periodic(Duration(seconds: 1), (t) async {
+      if(place.locality != null) {
+        ModelVariable.data =  await getData(city: place.locality);
+        setState(() {
+          _check = false;
+        });
+        t.cancel();
+      }
     });
 
     if(!mounted) return;
+  }
+
+  @override
+  void dispose() {
+    time!.cancel();
+    super.dispose();
   }
   
   @override
@@ -124,8 +140,7 @@ class _BottomBarState extends State<BottomBar> {
           },
           children: [
             HomePage(),
-            Container(),
-            Container(),
+            Forecast(),
             Container(),
           ],
         ),
@@ -145,19 +160,14 @@ class _BottomBarState extends State<BottomBar> {
                 iconSize: 21,
               ),
               BarItem(
-                icon: Icons.directions_car_filled_outlined,
-                title: 'Car',
-                iconSize: 25,
+                icon: Icons.calendar_today_outlined,
+                title: 'Forcast',
+                iconSize: 20,
               ),
               BarItem(
-                icon: Icons.storefront_outlined,
-                title: 'Car Resaler',
+                icon: Icons.history,
+                title: 'History',
                 iconSize: 25,
-              ),
-              BarItem(
-                icon: Icons.ac_unit,
-                title: 'Test Drive',
-                iconSize: 21,
               ),
             ],
           ),
