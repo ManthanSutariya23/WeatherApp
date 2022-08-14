@@ -46,6 +46,7 @@ class _BottomBarState extends State<BottomBar> {
     if(_check)
     {
       return Scaffold(
+        backgroundColor: ThemeColors.backgroundColor(),
         body: Container(
           width: Get.size.width,
           child: Column(
@@ -65,6 +66,8 @@ class _BottomBarState extends State<BottomBar> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(width: 50,),
+
               Icon(Icons.location_pin,color: ThemeColors.primaryTextColor(),size: 22,),
 
               Text(place.locality.toString(),style: AppTextStyle.regularBold20.copyWith(color: ThemeColors.primaryTextColor()),),

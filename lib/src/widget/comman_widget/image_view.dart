@@ -18,6 +18,7 @@ Widget imageView({
   double? bottomMargin,
   double? leftMargin,
   BoxShape? shape,
+  Color? imgcolor
 }) {
   return Container(
     height: height ?? Get.size.width / 6,
@@ -67,6 +68,7 @@ Widget imageView({
                       height: Get.size.width / 6,
                       width: Get.size.width / 6,
                       fit: BoxFit.cover,
+                      color: imgcolor,
                     ))
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(shape != null && shape == BoxShape.rectangle ? 10 : 500),
