@@ -10,6 +10,7 @@ import 'package:weather/src/constant/theme_color.dart';
 import 'package:weather/src/model/model.dart';
 import 'package:weather/src/model/model_variable.dart';
 import 'package:weather/src/screen/forcaste/forecast.dart';
+import 'package:weather/src/screen/history/history.dart';
 import 'package:weather/src/screen/home/home.dart';
 import 'package:weather/src/services/currnent_location.dart';
 import 'package:weather/src/widget/bottombar_design/sliding_clipped.dart';
@@ -141,7 +142,7 @@ class _BottomBarState extends State<BottomBar> {
           children: [
             HomePage(),
             Forecast(),
-            Container(),
+            History(),
           ],
         ),
         bottomNavigationBar: SlidingClippedNavBar(

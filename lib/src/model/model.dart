@@ -56,4 +56,19 @@ getData ({
   }
 }
 
-
+getHistoryData ({
+  @required String? date,
+  @required String? city,
+}) async {
+  var dio = Dio();
+  print(APIEndpoints.history(date,city));
+    final response = await dio.post(
+      APIEndpoints.history(date,city),
+    );
+  if (response.statusCode == 200) {
+    return jsonDecode(response.toString());
+  }
+  else {
+    return null;
+  }
+}
