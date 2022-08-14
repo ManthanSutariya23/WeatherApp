@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(left: Get.size.width * 0.05,top: Get.size.height * 0.04),
@@ -92,14 +93,15 @@ class _HomePageState extends State<HomePage> {
                                   isC = true;
                                 });
                               },
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: AppColors.secondaryGreyColor.shade300,
-                                ),
-                                child: Text('°C',
-                                  style: AppTextStyle.regular16,
+                              child: Card(
+                                elevation: 4,
+                                margin: EdgeInsets.all(0),
+                                color: ThemeColors.cardColor(),
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text('°C',
+                                    style: AppTextStyle.regular16.copyWith(color: ThemeColors.primaryTextColor()),
+                                  ),
                                 ),
                               ),
                             ),
@@ -114,14 +116,15 @@ class _HomePageState extends State<HomePage> {
                                   isC = false;
                                 });
                               },
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: AppColors.secondaryGreyColor.shade300,
-                                ),
-                                child: Text('°F',
-                                  style: AppTextStyle.regular16,
+                              child: Card(
+                                elevation: 4,
+                                margin: EdgeInsets.all(0),
+                                color: ThemeColors.cardColor(),
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text('°F',
+                                    style: AppTextStyle.regular16.copyWith(color: ThemeColors.primaryTextColor()),
+                                  ),
                                 ),
                               ),
                             )
@@ -241,80 +244,86 @@ class _HomePageState extends State<HomePage> {
           ),
 
           // wind visibility humidity
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.secondaryGreyColor.shade300,
-            ),
-            height: Get.size.height * 0.1,
+          Card(
             margin: EdgeInsets.symmetric(horizontal: 20),
-            width: Get.size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text('Wind',
-                          style: AppTextStyle.regular15,
+            color: ThemeColors.cardColor(),
+            elevation: 4,
+            child: Container(
+              height: Get.size.height * 0.1,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              width: Get.size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text('Wind',
+                            style: AppTextStyle.regular15.copyWith(color: ThemeColors.primaryTextColor()),
+                          ),
                         ),
                       ),
-                    ),
 
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text('Visibility',
-                          style: AppTextStyle.regular15,
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text('Visibility',
+                            style: AppTextStyle.regular15.copyWith(color: ThemeColors.primaryTextColor()),
+                          ),
                         ),
                       ),
-                    ),
 
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text('Humidity',
-                          style: AppTextStyle.regular15,
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text('Humidity',
+                            style: AppTextStyle.regular15.copyWith(color: ThemeColors.primaryTextColor()),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
 
-                SizedBox(
-                  height: 10,
-                ),
+                  SizedBox(
+                    height: 10,
+                  ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(ModelVariable.data['current']['wind_kph'].toString() + " K/H")
-                      )
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(ModelVariable.data['current']['wind_kph'].toString() + " K/H",
+                            style: AppTextStyle.regular14.copyWith(color: ThemeColors.primaryTextColor()),
+                          )
+                        )
+                      ),
 
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(ModelVariable.data['current']['vis_km'].toString() + " KM")
-                      )
-                    ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(ModelVariable.data['current']['vis_km'].toString() + " KM",
+                            style: AppTextStyle.regular14.copyWith(color: ThemeColors.primaryTextColor()),
+                          )
+                        )
+                      ),
 
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(ModelVariable.data['current']['humidity'].toString() + " %")
-                      )
-                    ),
-                  ],
-                ),
-              ],
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(ModelVariable.data['current']['humidity'].toString() + " %",
+                            style: AppTextStyle.regular14.copyWith(color: ThemeColors.primaryTextColor()),
+                          )
+                        )
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -326,100 +335,107 @@ class _HomePageState extends State<HomePage> {
           Container(
             height: Get.size.height * 0.25,
             child: ListView.builder(
+              padding: EdgeInsets.only(bottom: 7),
               itemCount: ModelVariable.data['forecast']['forecastday'][0]['hour'].length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: Get.size.width * 0.4,
-                  margin: EdgeInsets.only(left: index == 0 ? 15 : 0, right: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.secondaryGreyColor.shade300,
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 13),
-                  child: Column(
-                    children: [
-                      Text(DateFormat('hh : mm').format(DateTime.parse(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['time']))),
+                return Card(
+                    elevation: 4,
+                    margin: EdgeInsets.only(left: index == 0 ? 15 : 0, right: 15),
+                    color: ThemeColors.cardColor(),
+                  child: Container(
+                    width: Get.size.width * 0.4,
+                    padding: EdgeInsets.symmetric(vertical: 13),
+                    child: Column(
+                      children: [
+                        Text(DateFormat('hh : mm').format(DateTime.parse(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['time'])),
+                          style: AppTextStyle.regular14.copyWith(color: ThemeColors.primaryTextColor()),
+                        ),
 
-                      SizedBox(
-                        height: 10,
-                      ),
+                        SizedBox(
+                          height: 10,
+                        ),
 
-                      imageView(
-                        imageURL: "https://" + ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['condition']['icon'].toString().split('//')[1], 
-                        shape: BoxShape.rectangle,
-                        title: "Weather", 
-                        isLocalImage: false
-                      ),
+                        imageView(
+                          imageURL: "https://" + ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['condition']['icon'].toString().split('//')[1], 
+                          shape: BoxShape.rectangle,
+                          title: "Weather", 
+                          isLocalImage: false,
+                          backgroundColor: Colors.transparent
+                        ),
 
-                      SizedBox(height: 10),
+                        SizedBox(height: 10),
 
-                      Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['condition']['text'],
-                        style: AppTextStyle.regular12.copyWith(fontWeight: FontWeight.normal),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                        Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['condition']['text'],
+                          style: AppTextStyle.regular12.copyWith(fontWeight: FontWeight.normal,color: ThemeColors.primaryTextColor()),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
 
-                      SizedBox(height: 10),
+                        SizedBox(height: 10),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Icon(FontAwesomeIcons.wind,
-                              size: Get.size.height * 0.025,
-                            )
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Icon(FontAwesomeIcons.wind,
+                                size: Get.size.height * 0.025,
+                                color: ThemeColors.primaryTextColor()
+                              )
+                            ),
 
-                          Expanded(
-                            child: Icon(Icons.visibility_outlined,
-                              size: Get.size.height * 0.025,
-                            )
-                          ),
+                            Expanded(
+                              child: Icon(Icons.visibility_outlined,
+                                size: Get.size.height * 0.025,
+                                color: ThemeColors.primaryTextColor()
+                              )
+                            ),
 
-                          Expanded(
-                            child: Icon(FontAwesomeIcons.droplet,
-                              size: Get.size.height * 0.025,
-                            )
-                          )
-                        ],
-                      ),
-
-                      SizedBox(
-                        height: 5,
-                      ),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['wind_kph'].toString() + "\nK/H",
-                                style: AppTextStyle.regular11.copyWith(fontWeight: FontWeight.normal),
+                            Expanded(
+                              child: Icon(FontAwesomeIcons.droplet,
+                                size: Get.size.height * 0.025,
+                                color: ThemeColors.primaryTextColor()
                               )
                             )
-                          ),
+                          ],
+                        ),
 
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['vis_km'].toString() + "\nKM",
-                                style: AppTextStyle.regular11.copyWith(fontWeight: FontWeight.normal),
-                              )
-                            )
-                          ),
+                        SizedBox(
+                          height: 5,
+                        ),
 
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['humidity'].toString() + " %",
-                                style: AppTextStyle.regular11.copyWith(fontWeight: FontWeight.normal),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['wind_kph'].toString() + "\nK/H",
+                                  style: AppTextStyle.regular11.copyWith(fontWeight: FontWeight.normal,color: ThemeColors.primaryTextColor()),
+                                )
                               )
-                            )
-                          ),
-                        ],
-                      ),
-                    ],
+                            ),
+
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['vis_km'].toString() + "\nKM",
+                                  style: AppTextStyle.regular11.copyWith(fontWeight: FontWeight.normal,color: ThemeColors.primaryTextColor()),
+                                )
+                              )
+                            ),
+
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text(ModelVariable.data['forecast']['forecastday'][0]['hour'][index]['humidity'].toString() + " %",
+                                  style: AppTextStyle.regular11.copyWith(fontWeight: FontWeight.normal,color: ThemeColors.primaryTextColor()),
+                                )
+                              )
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
