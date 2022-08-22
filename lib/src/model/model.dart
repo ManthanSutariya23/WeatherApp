@@ -45,9 +45,7 @@ getData ({
   @required String? city,
 }) async {
   var dio = Dio();
-    final response = await dio.get(
-      APIEndpoints.url(city),
-    );
+    final response = await dio.get(APIEndpoints.url(city),);
   if (response.statusCode == 200) {
     return jsonDecode(response.toString());
   }

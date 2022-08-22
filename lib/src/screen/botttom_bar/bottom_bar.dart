@@ -12,6 +12,7 @@ import 'package:weather/src/model/model_variable.dart';
 import 'package:weather/src/screen/forcaste/forecast.dart';
 import 'package:weather/src/screen/history/history.dart';
 import 'package:weather/src/screen/home/home.dart';
+import 'package:weather/src/screen/location/chnage_location.dart';
 import 'package:weather/src/services/currnent_location.dart';
 import 'package:weather/src/widget/bottombar_design/sliding_clipped.dart';
 
@@ -143,6 +144,7 @@ class _BottomBarState extends State<BottomBar> {
             HomePage(),
             Forecast(),
             History(),
+            ChangeLocation()
           ],
         ),
         bottomNavigationBar: SlidingClippedNavBar(
@@ -168,6 +170,11 @@ class _BottomBarState extends State<BottomBar> {
               BarItem(
                 icon: Icons.history,
                 title: 'History',
+                iconSize: 25,
+              ),
+              BarItem(
+                icon: Icons.location_on_outlined,
+                title: 'Chnage Location',
                 iconSize: 25,
               ),
             ],
